@@ -1,4 +1,4 @@
-# fastutil
+fastutil
 ================================================================================
 Extension classes to classes from fastutil especially used for data mining/NLP tasks.
 
