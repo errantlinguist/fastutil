@@ -37,7 +37,6 @@ import it.unimi.dsi.fastutil.ints.IntSortedSet;
  * @param <C>
  *            The type of {@code IntCollection} object used to contain the
  *            values for each key.
- *
  * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since 2013-11-03
  */
@@ -157,7 +156,6 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	private final Supplier<? extends C> valueCollectionFactory;
 
 	/**
-	 *
 	 * @param decorated
 	 *            The {@link Map} to decorate.
 	 * @param valueCollectionFactory
@@ -214,7 +212,6 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -274,14 +271,13 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (decorated == null ? 0 : decorated.hashCode());
+		result = (prime * result) + (decorated == null ? 0 : decorated.hashCode());
 		return result;
 	}
 
@@ -418,7 +414,6 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

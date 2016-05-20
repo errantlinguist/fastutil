@@ -23,7 +23,6 @@ import java.util.Collections;
  *
  * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since 2013-10-15
- *
  */
 public final class CollectionSize {
 

@@ -1,7 +1,17 @@
 /*
- * Copyright (c) the Department of Informatics, Technische Universität Darmstadt. All Rights Reserved.
+ * 	Copyright 2013 Todd Shore
  *
- * Unauthorized distribution of this file via any medium is strictly prohibited.
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *
+ *		http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
  */
 package com.github.errantlinguist.fastutil.ints;
 
@@ -18,9 +28,8 @@ import it.unimi.dsi.fastutil.objects.ObjectCollection;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 
 /**
- * @author <a href="mailto:shore@ukp.informatik.tu-darmstadt.de">Todd Shore</a>
+ * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since May 2, 2016
- *
  */
 public final class ReverseLookupInt2ObjectMap<V> implements Int2ObjectMap<V> {
 
@@ -32,7 +41,7 @@ public final class ReverseLookupInt2ObjectMap<V> implements Int2ObjectMap<V> {
 	 */
 	public ReverseLookupInt2ObjectMap(final Int2ObjectMap<V> decorated) {
 		this.decorated = decorated;
-		this.indexedValues = ListIndices.createListFromIndexMap(decorated);
+		this.indexedValues = ListIntIndices.createListFromIndexMapping(decorated.int2ObjectEntrySet());
 	}
 
 	@Override

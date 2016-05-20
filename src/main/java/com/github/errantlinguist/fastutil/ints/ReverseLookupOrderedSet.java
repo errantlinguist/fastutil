@@ -38,10 +38,8 @@ import it.unimi.dsi.fastutil.objects.Object2IntMaps;
  *
  * @param <E>
  *            The type of the elements of the decorated {@code List}.
- *
  * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since 2013-10-15
- *
  */
 public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, Set<E> {
 
@@ -164,7 +162,6 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -208,14 +205,13 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (decorated == null ? 0 : decorated.hashCode());
+		result = (prime * result) + (decorated == null ? 0 : decorated.hashCode());
 		return result;
 	}
 
@@ -346,7 +342,6 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 
 	/*
 	 * (non-Javadoc)
-	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

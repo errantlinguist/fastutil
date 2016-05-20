@@ -19,23 +19,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import com.github.errantlinguist.collections.CollectionSize;
+import com.github.errantlinguist.collections.ListIndices;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.ints.IntCollection;
-import it.unimi.dsi.fastutil.ints.IntComparator;
-import it.unimi.dsi.fastutil.ints.IntComparators;
-import it.unimi.dsi.fastutil.ints.IntIterable;
-import it.unimi.dsi.fastutil.ints.IntList;
-import it.unimi.dsi.fastutil.ints.IntRBTreeSet;
-import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
@@ -44,11 +37,11 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
  *
  * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since 2013-10-22
- *
  */
 public final class ListIntIndices {
 
-	public static final <E> List<E> createListFromIndexMap(final Int2ObjectMap<? extends E> elementIndices) {
+	public static final <E> List<E> createListFromIndexMapping(
+			final Collection<? extends Entry<? extends E>> elementIndices) {
 		assert elementIndices != null;
 		final List<E> result = new ArrayList<E>(elementIndices.size());
 
@@ -92,63 +85,6 @@ public final class ListIntIndices {
 		return result;
 	}
 
-	public static final <E> boolean ensureIndex(final List<E> list, final int index) {
-		return CollectionSize.ensureSize(list, index + 1);
-	}
-
-	public static final <E> boolean ensureIndex(final List<E> list, final int index, final E defaultElement) {
-		return CollectionSize.ensureSize(list, index + 1, defaultElement);
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final IntCollection indices) {
-		assert indices != null;
-		final List<E> result = new ArrayList<E>(indices.size());
-
-		removeAllIndices(list, indices, result);
-
-		return result;
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final IntIterable indices) {
-		final List<E> result = new LinkedList<E>();
-
-		removeAllIndices(list, indices, result);
-
-		return result;
-	}
-
-	public static final <E> void removeAllIndices(final List<E> list, final IntIterable indices,
-			final Collection<E> removedElements) {
-		assert list != null;
-		assert indices != null;
-		assert removedElements != null;
-		for (final int index : indices) {
-			removedElements.add(list.remove(index));
-		}
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final IntList indices) {
-		Collections.sort(indices, Collections.reverseOrder());
-		final IntCollection upcastIndices = indices;
-		return removeAllIndices(list, upcastIndices);
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, IntSortedSet indices) {
-		assert indices != null;
-		final IntComparator reverseComparator = IntComparators.OPPOSITE_COMPARATOR;
-		// If the set is not definitely already in reverse natural order, create
-		// a new one
-		// in that order to be sure
-		if (!reverseComparator.equals(indices.comparator())) {
-			final IntSortedSet reverseSortedIndices = new IntRBTreeSet(reverseComparator);
-			reverseSortedIndices.addAll(indices);
-			indices = reverseSortedIndices;
-		}
-
-		final IntCollection upcastIndices = indices;
-		return removeAllIndices(list, upcastIndices);
-	}
-
 	public static final <E> void setIndexedElements(final List<E> list,
 			final Int2ObjectMap<? extends E> elementIndices) {
 		assert list != null;
@@ -156,7 +92,7 @@ public final class ListIntIndices {
 
 		// Find the maximum index in order to pre-set the list length
 		final int maxIndex = Collections.max(elementIndices.keySet());
-		ensureIndex(list, maxIndex);
+		ListIndices.ensureIndex(list, maxIndex);
 
 		final Iterable<? extends Entry<? extends E>> elementIndexEntries = elementIndices.int2ObjectEntrySet();
 		setIndexedElements(list, elementIndexEntries);

@@ -18,24 +18,20 @@ package com.github.errantlinguist.collections;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * A utility class for manipulating {@link List} indices.
  *
  * @author <a href="mailto:errantlinguist@gmail.com">Todd Shore</a>
  * @since 2013-10-22
- *
  */
 public final class ListIndices {
 
-	public static final <E> List<E> createListFromIndexMap(final Map<? extends Integer, ? extends E> elementIndices) {
+	public static final <E> List<E> createListFromIndexMapping(
+			final Collection<? extends Entry<? extends Integer, ? extends E>> elementIndices) {
 		assert elementIndices != null;
 		final List<E> result = new ArrayList<E>(elementIndices.size());
 
@@ -50,55 +46,6 @@ public final class ListIndices {
 
 	public static final <E> boolean ensureIndex(final List<E> list, final int index, final E defaultElement) {
 		return CollectionSize.ensureSize(list, index + 1, defaultElement);
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final Collection<Integer> indices) {
-		assert indices != null;
-		final List<E> result = new ArrayList<E>(indices.size());
-
-		removeAllIndices(list, indices, result);
-
-		return result;
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final Iterable<Integer> indices) {
-		final List<E> result = new LinkedList<E>();
-
-		removeAllIndices(list, indices, result);
-
-		return result;
-	}
-
-	public static final <E> void removeAllIndices(final List<E> list, final Iterable<Integer> indices,
-			final Collection<E> removedElements) {
-		assert list != null;
-		assert indices != null;
-		assert removedElements != null;
-		for (final Integer index : indices) {
-			removedElements.add(list.remove(index.intValue()));
-		}
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, final List<Integer> indices) {
-		Collections.sort(indices, Collections.reverseOrder());
-		final Collection<Integer> upcastIndices = indices;
-		return removeAllIndices(list, upcastIndices);
-	}
-
-	public static final <E> List<E> removeAllIndices(final List<E> list, SortedSet<Integer> indices) {
-		assert indices != null;
-		final Comparator<Integer> reverseComparator = Collections.reverseOrder();
-		// If the set is not definitely already in reverse natural order, create
-		// a new one
-		// in that order to be sure
-		if (!reverseComparator.equals(indices.comparator())) {
-			final SortedSet<Integer> reverseSortedIndices = new TreeSet<Integer>(reverseComparator);
-			reverseSortedIndices.addAll(indices);
-			indices = reverseSortedIndices;
-		}
-
-		final Collection<Integer> upcastIndices = indices;
-		return removeAllIndices(list, upcastIndices);
 	}
 
 	public static final <E> void setIndexedElements(final List<E> list,
