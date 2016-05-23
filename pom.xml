@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>collections</name>
-	<url>https://github.com/errantlinguist/</url>
+	<url>https://github.com/errantlinguist/fastutil</url>
 
 	<developers>
 		<developer>
