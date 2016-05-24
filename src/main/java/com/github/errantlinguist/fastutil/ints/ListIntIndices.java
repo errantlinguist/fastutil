@@ -69,6 +69,7 @@ public final class ListIntIndices {
 	public static final <E> Object2IntMap<E> createOrderedSetIndexMap(final Collection<? extends E> orderedSet) {
 		assert orderedSet != null;
 		final Object2IntMap<E> result = new Object2IntOpenHashMap<>(orderedSet.size() + 1);
+		result.defaultReturnValue(ListIndices.UNSEEN_ELEMENT_INDEX);
 
 		int nextIndex = -1;
 		// TODO: Refactor this logic below into its own method

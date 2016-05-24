@@ -95,7 +95,7 @@ public final class Object2IntMapValueArithmetic {
 			final IntCollection incrementedValues) {
 		final int valueToIncrement = map.getInt(keyToIncrement);
 		// Filter out the values outside the specified range of values to update
-		if ((fromValue <= valueToIncrement) && (valueToIncrement <= toValue)
+		if (fromValue <= valueToIncrement && valueToIncrement <= toValue
 				&& !incrementedValues.contains(valueToIncrement)) {
 			final int incrementedValue = valueToIncrement + increment;
 			// Put the new value into the map
