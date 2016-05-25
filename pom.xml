@@ -7,8 +7,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>collections</name>
-	<url>https://github.com/errantlinguist/fastutil</url>
+	<name>fastutil</name>
+	<description>Extension classes to classes from fastutil especially used for data mining/NLP tasks.</description>
+	<inceptionYear>2016</inceptionYear>
 
 	<developers>
 		<developer>
