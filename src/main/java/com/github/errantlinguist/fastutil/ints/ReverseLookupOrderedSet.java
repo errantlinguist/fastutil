@@ -253,8 +253,8 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 		// Remove the element from the reverse-lookup map before shifting the
 		// remaining elements because it is possible that the element is present
 		// elsewhere in the list and so still has entries in the map
-		final boolean wasRemoved = reverseLookupMap.remove(result, index);
-		assert wasRemoved;
+		final Integer oldVal = reverseLookupMap.remove(result);
+		assert oldVal != null && oldVal.equals(index);
 		// shift all indices in map after "index"
 		final int lastIndex = decorated.size();
 		final List<E> shiftedElements = decorated.subList(index + 1, lastIndex);
@@ -308,8 +308,8 @@ public final class ReverseLookupOrderedSet<E> implements List<E>, Serializable, 
 		final E result = decorated.set(index, element);
 
 		// Remove the old key-index pair from the reverse-lookup map
-		final boolean wasOldKeyRemoved = reverseLookupMap.remove(result, index);
-		assert wasOldKeyRemoved;
+		final Integer oldVal = reverseLookupMap.remove(result);
+		assert oldVal != null && oldVal.equals(index);
 		// Put the new key-index pair into the reverse-lookup map
 		final int oldValue = reverseLookupMap.put(element, index);
 		assert oldValue == reverseLookupMap.defaultReturnValue();
