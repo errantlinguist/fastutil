@@ -43,7 +43,7 @@ public final class ListIntIndices {
 	public static final <E> List<E> createListFromIndexMapping(
 			final Collection<? extends Entry<? extends E>> elementIndices) {
 		assert elementIndices != null;
-		final List<E> result = new ArrayList<E>(elementIndices.size());
+		final List<E> result = new ArrayList<>(elementIndices.size());
 
 		setIndexedElements(result, elementIndices);
 
@@ -69,7 +69,7 @@ public final class ListIntIndices {
 	public static final <E> Object2IntMap<E> createOrderedSetIndexMap(final Collection<? extends E> orderedSet) {
 		assert orderedSet != null;
 		final Object2IntMap<E> result = new Object2IntOpenHashMap<>(orderedSet.size() + 1);
-		result.defaultReturnValue(ListIndices.UNSEEN_ELEMENT_INDEX);
+		result.defaultReturnValue(-1);
 
 		int nextIndex = -1;
 		// TODO: Refactor this logic below into its own method

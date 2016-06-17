@@ -84,13 +84,16 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	 * @return If at least one value was added to the map.
 	 */
 	public static final <K, C extends IntCollection> boolean putIncrementingValues(
-			final MultiValueObject2IntMap<K, C> multimap, final Iterable<? extends K> keysToAdd, int startValue) {
+			final MultiValueObject2IntMap<K, C> multimap, final Iterable<? extends K> keysToAdd, final int startValue) {
 		assert keysToAdd != null;
 		boolean result = false;
 
-		for (final K keyToAdd : keysToAdd) {
-			if (multimap.putValue(keyToAdd, startValue++)) {
-				result = true;
+		{
+			int currentValue = startValue;
+			for (final K keyToAdd : keysToAdd) {
+				if (multimap.putValue(keyToAdd, currentValue++)) {
+					result = true;
+				}
 			}
 		}
 
@@ -159,7 +162,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	 * @param decorated
 	 *            The {@link Map} to decorate.
 	 * @param valueCollectionFactory
-	 *            The {@link Factory} to use for creating new value collections
+	 *            The {@link Supplier} to use for creating new value collections
 	 *            for the map keys.
 	 */
 	public MultiValueObject2IntMap(final Map<K, C> decorated, final Supplier<? extends C> valueCollectionFactory) {
@@ -212,7 +215,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -272,7 +275,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -416,7 +419,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
