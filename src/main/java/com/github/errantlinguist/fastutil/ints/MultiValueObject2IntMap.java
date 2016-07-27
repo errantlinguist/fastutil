@@ -150,7 +150,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	private final Map<K, C> decorated;
 
 	/**
-	 * The {@link Factory} used for creating new value collections for the map
+	 * The {@link Supplier} used for creating new value collections for the map
 	 * keys.
 	 */
 	private final Supplier<? extends C> valueCollectionFactory;
@@ -159,7 +159,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 	 * @param decorated
 	 *            The {@link Map} to decorate.
 	 * @param valueCollectionFactory
-	 *            The {@link Factory} to use for creating new value collections
+	 *            The {@link Supplier} to use for creating new value collections
 	 *            for the map keys.
 	 */
 	public MultiValueObject2IntMap(final Map<K, C> decorated, final Supplier<? extends C> valueCollectionFactory) {
