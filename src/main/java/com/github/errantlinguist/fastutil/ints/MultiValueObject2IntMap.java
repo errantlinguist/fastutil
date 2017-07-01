@@ -403,7 +403,7 @@ public final class MultiValueObject2IntMap<K, C extends IntCollection> implement
 		if (values == null) {
 			result = false;
 		} else {
-			result = keyValues.remove(values);
+			result = keyValues.removeAll(values);
 			if (result) {
 				allValues.removeAll(values);
 			}
