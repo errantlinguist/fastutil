@@ -1,0 +1,4 @@
+fastutil-commons
+Copyright 2016 Todd Shore
+
+This product includes software developed by Todd Shore.
